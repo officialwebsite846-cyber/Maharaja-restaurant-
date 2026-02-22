@@ -1,81 +1,254 @@
-/* ================= MOBILE RESPONSIVE FIX ================= */
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maharaja Restaurant | Pure Veg | Hardoi</title>
 
-@media (max-width: 992px) {
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .section {
-        padding: 60px 0;
-    }
+<style>
+:root{
+    --primary:#8b0000;
+    --secondary:#ffd700;
+    --dark:#222;
+    --light:#f7f7f7;
+    --white:#fff;
 }
 
-@media (max-width: 768px) {
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    /* Navbar Mobile */
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: var(--white);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        padding: 30px 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .hero {
-        height: auto;
-        padding: 120px 20px 80px;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .hero-info {
-        flex-direction: column;
-        gap: 15px;
-        position: static;
-        transform: none;
-        margin-top: 30px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
+body{
+    font-family: Arial, sans-serif;
+    line-height:1.6;
+    background:#fff;
+    color:#333;
 }
 
-@media (max-width: 480px) {
-    .section-title h2 {
-        font-size: 1.8rem;
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .btn {
-        padding: 12px 25px;
-        font-size: 0.9rem;
-    }
+/* ===== HEADER ===== */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    z-index:1000;
 }
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:var(--primary);
+}
+.menu{
+    display:flex;
+    gap:20px;
+}
+.menu a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+.menu a:hover{color:var(--primary);}
+
+.hamburger{
+    display:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* ===== HERO ===== */
+.hero{
+    margin-top:70px;
+    min-height:90vh;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4") center/cover;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+}
+.hero h1{
+    font-size:36px;
+    margin-bottom:15px;
+}
+.hero p{
+    font-size:18px;
+    margin-bottom:25px;
+}
+.hero span{
+    background:var(--secondary);
+    color:#000;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+/* ===== SECTION ===== */
+section{
+    padding:60px 20px;
+}
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+.title h2{
+    color:var(--primary);
+    font-size:30px;
+}
+
+/* ===== ABOUT ===== */
+.about{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+}
+.about p{
+    font-size:16px;
+    color:#555;
+}
+
+/* ===== MENU ===== */
+.menu-grid{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.item{
+    background:var(--light);
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+.item h4{
+    color:var(--primary);
+    margin-bottom:5px;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+    background:var(--light);
+}
+.contact-box{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+}
+.contact-box p{
+    margin:10px 0;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:15px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+    .menu{
+        position:fixed;
+        top:60px;
+        left:-100%;
+        flex-direction:column;
+        background:#fff;
+        width:100%;
+        padding:20px 0;
+        transition:.3s;
+    }
+    .menu.active{left:0;}
+    .hamburger{display:block;}
+    .menu-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:26px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="nav">
+        <div class="logo">Maharaja Restaurant</div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="menu" id="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#menuu">Menu</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div>
+        <span>100% PURE VEG</span>
+        <h1>Maharaja Restaurant</h1>
+        <p>Swad jo dil jeet le – Best Pure Veg Food in Hardoi</p>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="title">
+        <h2>About Us</h2>
+    </div>
+    <div class="about">
+        <p>
+        Maharaja Restaurant ek shuddh shakahari (Pure Veg) restaurant hai.
+        Yahan aapko swachh vatavaran, achha swad aur family-friendly mahaul milta hai.
+        </p>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menuu">
+    <div class="title">
+        <h2>Our Special Menu</h2>
+    </div>
+    <div class="menu-grid">
+        <div class="item"><h4>Paneer Butter Masala</h4><p>Pure Veg Special</p></div>
+        <div class="item"><h4>Shahi Paneer</h4><p>Maharaja Special</p></div>
+        <div class="item"><h4>Veg Biryani</h4><p>Fresh & Tasty</p></div>
+        <div class="item"><h4>Masala Dosa</h4><p>South Indian</p></div>
+        <div class="item"><h4>Chole Bhature</h4><p>North Indian</p></div>
+        <div class="item"><h4>Veg Thali</h4><p>Complete Meal</p></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="title">
+        <h2>Contact Us</h2>
+    </div>
+    <div class="contact-box">
+        <p><b>Address:</b> Awasthi Market, Near Bilgram Chungi, Hardoi</p>
+        <p><b>Type:</b> Only Pure Veg Restaurant</p>
+        <p><b>Phone:</b> (Yahan apna number add karein)</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 Maharaja Restaurant | All Rights Reserved
+</footer>
+
+<script>
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
