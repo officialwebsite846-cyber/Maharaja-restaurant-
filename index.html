@@ -1,269 +1,351 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maharaja Restaurant | Pure Veg | Hardoi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maharaja Restaurant | Pure Veg | Best Food in Hardoi</title>
+    <meta name="description" content="Maharaja Restaurant - Pure Veg Restaurant in Hardoi. Best North Indian, South Indian, Chinese cuisine. Book table online. Free home delivery.">
+    <meta name="keywords" content="restaurant, pure veg, hardoi, food, biryani, paneer, north indian, south indian, chinese">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
---primary:#8B0000;
---secondary:#FFD700;
---dark:#111;
---white:#fff;
-}
+    <style>
+        /* ==================== CSS VARIABLES ==================== */
+        :root {
+            --primary: #8B0000;
+            --primary-light: #a52a2a;
+            --secondary: #FFD700;
+            --secondary-dark: #e6c200;
+            --dark: #1a1a1a;
+            --dark-light: #2d2d2d;
+            --white: #ffffff;
+            --light: #f8f8f8;
+            --gray: #888888;
+            --shadow: 0 5px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 10px 30px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{background:#fff;color:#333;}
+        html {
+            scroll-behavior: smooth;
+        }
 
-header{
-position:fixed;
-top:0;
-width:100%;
-background:#fff;
-padding:15px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-z-index:1000;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: var(--white);
+        }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-max-width:1200px;
-margin:auto;
-}
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
 
-.logo{font-size:22px;font-weight:bold;color:var(--primary);}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-nav ul{display:flex;gap:20px;list-style:none;}
-nav a{text-decoration:none;color:#000;font-weight:500;}
+        ul {
+            list-style: none;
+        }
 
-section{padding:100px 20px;}
-.container{max-width:1100px;margin:auto;}
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
-.hero{
-height:100vh;
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') center/cover;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-}
+        /* ==================== UTILITY CLASSES ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+        .section {
+            padding: 80px 0;
+        }
 
-.menu-item{
-border:1px solid #ddd;
-padding:15px;
-border-radius:10px;
-text-align:center;
-}
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-.menu-item img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:10px;
-}
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
 
-button{
-padding:8px 15px;
-background:var(--primary);
-color:#fff;
-border:none;
-border-radius:5px;
-cursor:pointer;
-margin-top:5px;
-}
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
 
-.cart-section{
-background:#f4f4f4;
-padding:40px 20px;
-margin-top:30px;
-border-radius:10px;
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
 
-.dark{
-background:#111;
-color:#fff;
-}
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.dark header{background:#222;}
-.dark nav a{color:#fff;}
-.dark .menu-item{background:#222;border:1px solid #444;}
-.dark .cart-section{background:#222;}
-.dark footer{background:black;}
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
 
-footer{
-background:var(--primary);
-color:#fff;
-text-align:center;
-padding:20px;
-}
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px;
-border-radius:50%;
-font-size:20px;
-text-decoration:none;
-}
-</style>
-</head>
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
 
-<body>
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+        }
 
-<header>
-<nav>
-<div class="logo">Maharaja Restaurant (Pure Veg)</div>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#menu">Menu</a></li>
-<li><a href="#booking">Booking</a></li>
-<li><a href="#contact">Contact</a></li>
-<li><a href="#" onclick="toggleDark()">🌙</a></li>
-</ul>
-</nav>
-</header>
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
 
-<section class="hero" id="home">
-<div>
-<h1>Welcome to Maharaja Restaurant</h1>
-<p>Awasthi Market, Near Bilgram Chungi, Hardoi</p>
-</div>
-</section>
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
 
-<section id="menu">
-<div class="container">
-<h2>Our Pure Veg Menu</h2>
+        /* ==================== HEADER & NAVIGATION ==================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
 
-<div class="menu-grid">
+        header.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-<div class="menu-item">
-<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
-<h3>Paneer Butter Masala</h3>
-<p>₹250</p>
-<button onclick="addToCart('Paneer Butter Masala',250)">Add</button>
-</div>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
 
-<div class="menu-item">
-<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b">
-<h3>Veg Biryani</h3>
-<p>₹220</p>
-<button onclick="addToCart('Veg Biryani',220)">Add</button>
-</div>
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-<div class="menu-item">
-<img src="https://images.unsplash.com/photo-1625944230961-8a601a5d99c2">
-<h3>Butter Naan</h3>
-<p>₹40</p>
-<button onclick="addToCart('Butter Naan',40)">Add</button>
-</div>
+        .logo span {
+            color: var(--secondary);
+        }
 
-</div>
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
 
-<div class="cart-section">
-<h3>Your Order</h3>
-<ul id="cartItems"></ul>
-<p>Subtotal: ₹<span id="subtotal">0</span></p>
-<p>GST (5%): ₹<span id="gst">0</span></p>
-<h4>Total: ₹<span id="total">0</span></h4>
-<button onclick="sendWhatsApp()">Order via WhatsApp</button>
-</div>
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
+            padding: 5px 0;
+        }
 
-</div>
-</section>
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
 
-<section id="booking">
-<div class="container">
-<h2>Book a Table</h2>
-<form>
-<input type="text" placeholder="Your Name" required>
-<input type="tel" placeholder="Phone Number" required>
-<input type="date" required>
-<input type="time" required>
-<button>Book Now</button>
-</form>
-</div>
-</section>
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-<section id="contact">
-<div class="container">
-<h2>Contact</h2>
-<p><strong>Address:</strong> Awasthi Market, Near Bilgram Chungi, Hardoi</p>
-<p><strong>Opening Time:</strong> 10:00 AM – 11:00 PM</p>
-</div>
-</section>
+        .nav-link:hover {
+            color: var(--primary);
+        }
 
-<footer>
-© 2026 Maharaja Restaurant | Pure Veg | Hardoi
-</footer>
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-<a href="https://wa.me/91YOURNUMBER" class="whatsapp">💬</a>
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: var(--transition);
+        }
 
-<script>
-let cart=[];
+        .theme-toggle:hover {
+            transform: rotate(20deg);
+        }
 
-function addToCart(name,price){
-let existing=cart.find(item=>item.name===name);
-if(existing){
-existing.qty++;
-}else{
-cart.push({name,price,qty:1});
-}
-renderCart();
-}
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
 
-function renderCart(){
-let list=document.getElementById("cartItems");
-list.innerHTML="";
-let subtotal=0;
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background: var(--dark);
+            transition: var(--transition);
+        }
 
-cart.forEach(item=>{
-subtotal+=item.price*item.qty;
-let li=document.createElement("li");
-li.textContent=`${item.name} x${item.qty} - ₹${item.price*item.qty}`;
-list.appendChild(li);
-});
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
 
-let gst=subtotal*0.05;
-let total=subtotal+gst;
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
 
-document.getElementById("subtotal").innerText=subtotal;
-document.getElementById("gst").innerText=gst.toFixed(0);
-document.getElementById("total").innerText=total.toFixed(0);
-}
+        .hero-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
 
-function sendWhatsApp(){
-let message="Hello Maharaja Restaurant,%0AOrder Details:%0A";
-cart.forEach(item=>{
-message+=`${item.name} x${item.qty} - ₹${item.price*item.qty}%0A`;
-});
-message+="Total: ₹"+document.getElementById("total").innerText;
-window.open("https://wa.me/91YOURNUMBER?text="+message);
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-function toggleDark(){
-document.body.classList.toggle("dark");
-localStorage.setItem("theme",document.body.classList.contains("dark"));
-}
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
 
-if(localStorage.getItem("theme")==="true"){
-document.body.classList.add("dark");
-}
-</script>
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
 
-</body>
-</html>
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            background: rgba(0,0,0,0.7);
+            padding: 15px 30px;
+            border-radius: 30px;
+        }
+
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .hero-info-item i {
+            color: var(--secondary);
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        .about {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--
