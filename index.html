@@ -64,6 +64,7 @@ gap:20px;
 border:1px solid #ddd;
 padding:15px;
 border-radius:10px;
+text-align:center;
 }
 
 .menu-item img{
@@ -83,18 +84,11 @@ cursor:pointer;
 margin-top:5px;
 }
 
-.cart{
-position:fixed;
-right:10px;
-top:100px;
-width:280px;
-background:#fff;
-border:1px solid #ddd;
-padding:15px;
+.cart-section{
+background:#f4f4f4;
+padding:40px 20px;
+margin-top:30px;
 border-radius:10px;
-max-height:400px;
-overflow:auto;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .dark{
@@ -105,7 +99,8 @@ color:#fff;
 .dark header{background:#222;}
 .dark nav a{color:#fff;}
 .dark .menu-item{background:#222;border:1px solid #444;}
-.dark .cart{background:#222;color:#fff;}
+.dark .cart-section{background:#222;}
+.dark footer{background:black;}
 
 footer{
 background:var(--primary);
@@ -136,6 +131,7 @@ text-decoration:none;
 <ul>
 <li><a href="#home">Home</a></li>
 <li><a href="#menu">Menu</a></li>
+<li><a href="#booking">Booking</a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="#" onclick="toggleDark()">🌙</a></li>
 </ul>
@@ -152,6 +148,7 @@ text-decoration:none;
 <section id="menu">
 <div class="container">
 <h2>Our Pure Veg Menu</h2>
+
 <div class="menu-grid">
 
 <div class="menu-item">
@@ -176,11 +173,9 @@ text-decoration:none;
 </div>
 
 </div>
-</div>
-</section>
 
-<div class="cart">
-<h3>Your Cart</h3>
+<div class="cart-section">
+<h3>Your Order</h3>
 <ul id="cartItems"></ul>
 <p>Subtotal: ₹<span id="subtotal">0</span></p>
 <p>GST (5%): ₹<span id="gst">0</span></p>
@@ -188,15 +183,27 @@ text-decoration:none;
 <button onclick="sendWhatsApp()">Order via WhatsApp</button>
 </div>
 
+</div>
+</section>
+
+<section id="booking">
+<div class="container">
+<h2>Book a Table</h2>
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="tel" placeholder="Phone Number" required>
+<input type="date" required>
+<input type="time" required>
+<button>Book Now</button>
+</form>
+</div>
+</section>
+
 <section id="contact">
 <div class="container">
 <h2>Contact</h2>
 <p><strong>Address:</strong> Awasthi Market, Near Bilgram Chungi, Hardoi</p>
 <p><strong>Opening Time:</strong> 10:00 AM – 11:00 PM</p>
-<iframe 
-src="https://maps.google.com/maps?q=Hardoi&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-width="100%" height="250" style="border:0;margin-top:20px;">
-</iframe>
 </div>
 </section>
 
@@ -204,12 +211,18 @@ width="100%" height="250" style="border:0;margin-top:20px;">
 © 2026 Maharaja Restaurant | Pure Veg | Hardoi
 </footer>
 
-<a href="#" class="whatsapp">💬</a>
+<a href="https://wa.me/91YOURNUMBER" class="whatsapp">💬</a>
 
 <script>
 let cart=[];
+
 function addToCart(name,price){
-cart.push({name,price});
+let existing=cart.find(item=>item.name===name);
+if(existing){
+existing.qty++;
+}else{
+cart.push({name,price,qty:1});
+}
 renderCart();
 }
 
@@ -217,14 +230,17 @@ function renderCart(){
 let list=document.getElementById("cartItems");
 list.innerHTML="";
 let subtotal=0;
+
 cart.forEach(item=>{
-subtotal+=item.price;
+subtotal+=item.price*item.qty;
 let li=document.createElement("li");
-li.textContent=item.name+" - ₹"+item.price;
+li.textContent=`${item.name} x${item.qty} - ₹${item.price*item.qty}`;
 list.appendChild(li);
 });
+
 let gst=subtotal*0.05;
 let total=subtotal+gst;
+
 document.getElementById("subtotal").innerText=subtotal;
 document.getElementById("gst").innerText=gst.toFixed(0);
 document.getElementById("total").innerText=total.toFixed(0);
@@ -233,7 +249,7 @@ document.getElementById("total").innerText=total.toFixed(0);
 function sendWhatsApp(){
 let message="Hello Maharaja Restaurant,%0AOrder Details:%0A";
 cart.forEach(item=>{
-message+=item.name+" - ₹"+item.price+"%0A";
+message+=`${item.name} x${item.qty} - ₹${item.price*item.qty}%0A`;
 });
 message+="Total: ₹"+document.getElementById("total").innerText;
 window.open("https://wa.me/91YOURNUMBER?text="+message);
